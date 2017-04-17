@@ -7,8 +7,6 @@ from sklearn.feature_selection import SelectPercentile, f_classif
 
 features_train_vect,features_train, features_test, labels_train, labels_test = preprocess()
 
-print features_train
-
 from sklearn.naive_bayes import GaussianNB
 clf = GaussianNB()
 t0 = time()
