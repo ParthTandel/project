@@ -4,17 +4,17 @@ import numpy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, f_classif
 
+
 features_train_vect,features_train, features_test, labels_train, labels_test = preprocess()
 
-from sklearn import tree
-clf = tree.DecisionTreeClassifier()
+from sklearn.neighbors import KNeighborsClassifier
 t0 = time()
-clf.fit(features_train, labels_train)
+neigh = KNeighborsClassifier(n_neighbors = 5)
+neigh.fit(features_train, labels_train)
 print "training time:", round(time()-t0, 3), "s"
-import collections
 
-t0 = time()
-pred = clf.predict(features_test)
+
+pred = neigh.predict(features_test)
 print "prediction time:", round(time()-t0, 3), "s"
 from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(pred , labels_test)
@@ -46,6 +46,6 @@ selector.fit(features_train_transformed, labels_train)
 features_test_transformed  = selector.transform(features_test_transformed).toarray()
 
 
-pred = clf.predict(features_test_transformed)
+pred = neigh.predict(features_test_transformed)
 
 print pred

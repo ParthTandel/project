@@ -30,6 +30,8 @@ def preprocess():
     features_train_vect = features_train
     vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
                                  stop_words='english')
+
+    print vectorizer;
     features_train_transformed = vectorizer.fit_transform(features_train)
     features_test_transformed  = vectorizer.transform(features_test)
 
